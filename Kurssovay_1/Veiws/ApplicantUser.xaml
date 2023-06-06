@@ -1,0 +1,49 @@
+﻿<Page x:Class="Kurssovay_1.Veiws.ApplicantUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kurssovay_1.Veiws"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ApplicantUser"
+      Loaded="ApplicantUser_Loaded">
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <TextBlock  HorizontalAlignment="Stretch" Margin="170,10,0,0" TextWrapping="Wrap" Text="Выбор Соискателей" VerticalAlignment="Top" Height="91" Width="430" FontSize="24"/>
+        <DataGrid Grid.Row="1" Margin="0,0,0,59.6" Grid.RowSpan="2"
+                  x:Name="ApplicantsGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя соискателя" Width="*" Binding="{Binding Applicant.first_name}"/>
+                <DataGridTextColumn Header="Дата обьявления" Width="*" Binding="{Binding date_of_application}"/>
+                <DataGridTextColumn Header="Специальность" Width="*" Binding="{Binding Positions.position}"/>
+                
+                <DataGridTemplateColumn Width="auto" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Отправить заявку"
+                                    Name="BtnAppl"
+                                    Click="BtnAppl_Click" Width="170">
+
+                            </Button>
+                        </DataTemplate>
+
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+
+        </DataGrid>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="25,21,0,0" VerticalAlignment="Top" Width="75" Click="Button_ClickOUT"/>
+        <Label Visibility="Hidden" Name="saveLogin"/>
+        <Button Content="Создать свое обьявление" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button_Create" />
+            
+    </Grid>
+</Page>

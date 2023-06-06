@@ -1,0 +1,24 @@
+﻿<Page x:Class="Kurssovay_1.Veiws.ChangeAdvADM"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kurssovay_1.Veiws"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChangeAdvADM"
+      Loaded="Page_Loaded">
+
+    <Grid >
+        <Label Margin="150,70">
+
+        </Label>
+        <Label Width="150" Height="40" Content="Направление" FontSize="15"  Margin="1,1,400,0"/>
+        <ComboBox Width="170" Height="30" DisplayMemberPath="position" SelectedItem="{Binding Positions}"  Margin="1,1,75,0" x:Name="Position"/>
+        <Label Width="150" Height="40" Content="Дата" FontSize="15" Margin="1,100,400,0"/>
+        <TextBox Width="150" Height="30" Margin="1,1,100,-100" Text="{Binding date_of_application}"  x:Name="Date"/>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="25,21,0,0" VerticalAlignment="Top" Width="75" Click="Button_ClickOUT"/>
+        <Button Content="Сохранить" HorizontalAlignment="Right" Margin="613,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="155" Height="40" Click="Button_Click"/>
+
+    </Grid>
+</Page>

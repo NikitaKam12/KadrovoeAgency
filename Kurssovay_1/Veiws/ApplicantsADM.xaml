@@ -1,0 +1,34 @@
+﻿<Page x:Class="Kurssovay_1.Veiws.ApplicantsADM"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kurssovay_1.Veiws"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ApplicantsADM">
+   
+
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <TextBlock  HorizontalAlignment="Stretch" Margin="170,10,0,0" TextWrapping="Wrap" Text="Обьявления Соискателей(стр Админа)" VerticalAlignment="Top" Height="91" Width="430" FontSize="24"/>
+            <DataGrid Grid.Row="1" Margin="0,0,0,59.6" Grid.RowSpan="2"
+                  x:Name="ApplicantsGrid" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding id_advertisement}"/>
+                    <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding Applicant.first_name}"/>
+                    <DataGridTextColumn Header="Направление" Width="*" Binding="{Binding Positions.position}"/>
+                <DataGridTextColumn Header="Дата" Width="*" Binding="{Binding date_of_application}"/>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Назад" HorizontalAlignment="Left" Margin="25,21,0,0" VerticalAlignment="Top" Width="75" Click="Button_ClickOUT"/>
+               <Button Content="Удалить" HorizontalAlignment="Right" Margin="613,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="155" Height="40" Click="Button_Click"/>
+        <Button Content="Редактировать" HorizontalAlignment="Left" Margin="1 11 1 1" Grid.Row="2" VerticalAlignment="Top" Width="155" Height="40" Click="Button_Click_1"/>
+
+    </Grid>
+    </Page>

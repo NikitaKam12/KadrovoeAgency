@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="30e625e04b9343c8b93d376f956c7fba" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="KadrovoeModel.Accounts" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeModel.Admins" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeModel.Advertisement" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeModel.Applicant" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeModel.Employer" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeModel.Positions" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeModel.Statements" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeModel.Statements1" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeModel.Status_" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeModel.Vacancies" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="KadrovoeModel.FK__Admins__id_accou__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="KadrovoeModel.FK__Applicant__id_ac__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="KadrovoeModel.FK__Employer__id_acc__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="KadrovoeModel.FK__Advertise__id_ap__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="KadrovoeModel.FK__Advertise__id_po__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="KadrovoeModel.FK__Statement__id_ad__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="KadrovoeModel.FK__Vacancies__id_em__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="KadrovoeModel.FK__Vacancies__id_po__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="KadrovoeModel.FK__Statement__id_st__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="KadrovoeModel.FK__Statement__id_va__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="KadrovoeModel.FK__Statement__id_st__3F466844" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

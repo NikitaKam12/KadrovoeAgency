@@ -1,0 +1,763 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище KadrovoeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="id_account" />
+          </Key>
+          <Property Name="id_account" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login_" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="password_" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="role_user" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="id_admin" />
+          </Key>
+          <Property Name="id_admin" Type="int" Nullable="false" />
+          <Property Name="id_account" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Advertisement">
+          <Key>
+            <PropertyRef Name="id_advertisement" />
+          </Key>
+          <Property Name="id_advertisement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_position" Type="int" Nullable="false" />
+          <Property Name="date_of_application" Type="date" />
+          <Property Name="id_applicant" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Applicant">
+          <Key>
+            <PropertyRef Name="id_applicant" />
+          </Key>
+          <Property Name="id_applicant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sex" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="exp_work" Type="int" Nullable="false" />
+          <Property Name="skills" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="id_account" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employer">
+          <Key>
+            <PropertyRef Name="id_employer" />
+          </Key>
+          <Property Name="id_employer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_company" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="adress_company" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="email_adress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="requirements" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="id_account" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="id_position" />
+          </Key>
+          <Property Name="id_position" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Statements">
+          <Key>
+            <PropertyRef Name="id_statement" />
+          </Key>
+          <Property Name="id_statement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_vacancies" Type="int" Nullable="false" />
+          <Property Name="login_2" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Statements1">
+          <Key>
+            <PropertyRef Name="id_statement1" />
+          </Key>
+          <Property Name="id_statement1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_advertisement" Type="int" Nullable="false" />
+          <Property Name="login_1" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status_">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status1" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vacancies">
+          <Key>
+            <PropertyRef Name="id_vacancies" />
+          </Key>
+          <Property Name="id_vacancies" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="exp_required" Type="int" Nullable="false" />
+          <Property Name="request" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_position" Type="int" Nullable="false" />
+          <Property Name="name_vacancies" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_employer" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Admins__id_accou__286302EC">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Admins" Type="Self.Admins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="Admins">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Advertise__id_ap__3B75D760">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="id_applicant" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="id_applicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Advertise__id_po__3A81B327">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="id_position" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="id_position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applicant__id_ac__2B3F6F97">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employer__id_acc__2E1BDC42">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Statement__id_ad__3E52440B">
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Statements1" Type="Self.Statements1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisement">
+              <PropertyRef Name="id_advertisement" />
+            </Principal>
+            <Dependent Role="Statements1">
+              <PropertyRef Name="id_advertisement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Statement__id_st__37A5467C">
+          <End Role="Status_" Type="Self.Status_" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Statements" Type="Self.Statements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="Statements">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Statement__id_st__3F466844">
+          <End Role="Status_" Type="Self.Status_" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Statements1" Type="Self.Statements1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="Statements1">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Statement__id_va__36B12243">
+          <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Statements" Type="Self.Statements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancies">
+              <PropertyRef Name="id_vacancies" />
+            </Principal>
+            <Dependent Role="Statements">
+              <PropertyRef Name="id_vacancies" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vacancies__id_em__32E0915F">
+          <End Role="Employer" Type="Self.Employer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employer">
+              <PropertyRef Name="id_employer" />
+            </Principal>
+            <Dependent Role="Vacancies">
+              <PropertyRef Name="id_employer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vacancies__id_po__33D4B598">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="id_position" />
+            </Principal>
+            <Dependent Role="Vacancies">
+              <PropertyRef Name="id_position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище KadrovoeModelContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Advertisement" EntityType="Self.Advertisement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Applicant" EntityType="Self.Applicant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employer" EntityType="Self.Employer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statements" EntityType="Self.Statements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statements1" EntityType="Self.Statements1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status_" EntityType="Self.Status_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacancies" EntityType="Self.Vacancies" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Admins__id_accou__286302EC" Association="Self.FK__Admins__id_accou__286302EC">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Admins" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Advertise__id_ap__3B75D760" Association="Self.FK__Advertise__id_ap__3B75D760">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Advertise__id_po__3A81B327" Association="Self.FK__Advertise__id_po__3A81B327">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicant__id_ac__2B3F6F97" Association="Self.FK__Applicant__id_ac__2B3F6F97">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employer__id_acc__2E1BDC42" Association="Self.FK__Employer__id_acc__2E1BDC42">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Statement__id_ad__3E52440B" Association="Self.FK__Statement__id_ad__3E52440B">
+            <End Role="Advertisement" EntitySet="Advertisement" />
+            <End Role="Statements1" EntitySet="Statements1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Statement__id_st__37A5467C" Association="Self.FK__Statement__id_st__37A5467C">
+            <End Role="Status_" EntitySet="Status_" />
+            <End Role="Statements" EntitySet="Statements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Statement__id_st__3F466844" Association="Self.FK__Statement__id_st__3F466844">
+            <End Role="Status_" EntitySet="Status_" />
+            <End Role="Statements1" EntitySet="Statements1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Statement__id_va__36B12243" Association="Self.FK__Statement__id_va__36B12243">
+            <End Role="Vacancies" EntitySet="Vacancies" />
+            <End Role="Statements" EntitySet="Statements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vacancies__id_em__32E0915F" Association="Self.FK__Vacancies__id_em__32E0915F">
+            <End Role="Employer" EntitySet="Employer" />
+            <End Role="Vacancies" EntitySet="Vacancies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vacancies__id_po__33D4B598" Association="Self.FK__Vacancies__id_po__33D4B598">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Vacancies" EntitySet="Vacancies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KadrovoeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="id_account" />
+          </Key>
+          <Property Name="id_account" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login_" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password_" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role_user" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK__Admins__id_accou__286302EC" FromRole="Accounts" ToRole="Admins" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK__Applicant__id_ac__2B3F6F97" FromRole="Accounts" ToRole="Applicant" />
+          <NavigationProperty Name="Employer" Relationship="Self.FK__Employer__id_acc__2E1BDC42" FromRole="Accounts" ToRole="Employer" />
+        </EntityType>
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="id_admin" />
+          </Key>
+          <Property Name="id_admin" Type="Int32" Nullable="false" />
+          <Property Name="id_account" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Admins__id_accou__286302EC" FromRole="Admins" ToRole="Accounts" />
+        </EntityType>
+        <EntityType Name="Advertisement">
+          <Key>
+            <PropertyRef Name="id_advertisement" />
+          </Key>
+          <Property Name="id_advertisement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_position" Type="Int32" Nullable="false" />
+          <Property Name="date_of_application" Type="DateTime" Precision="0" />
+          <Property Name="id_applicant" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK__Advertise__id_ap__3B75D760" FromRole="Advertisement" ToRole="Applicant" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK__Advertise__id_po__3A81B327" FromRole="Advertisement" ToRole="Positions" />
+          <NavigationProperty Name="Statements1" Relationship="Self.FK__Statement__id_ad__3E52440B" FromRole="Advertisement" ToRole="Statements1" />
+        </EntityType>
+        <EntityType Name="Applicant">
+          <Key>
+            <PropertyRef Name="id_applicant" />
+          </Key>
+          <Property Name="id_applicant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="exp_work" Type="Int32" Nullable="false" />
+          <Property Name="skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_account" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Applicant__id_ac__2B3F6F97" FromRole="Applicant" ToRole="Accounts" />
+          <NavigationProperty Name="Advertisement" Relationship="Self.FK__Advertise__id_ap__3B75D760" FromRole="Applicant" ToRole="Advertisement" />
+        </EntityType>
+        <EntityType Name="Employer">
+          <Key>
+            <PropertyRef Name="id_employer" />
+          </Key>
+          <Property Name="id_employer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="adress_company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email_adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="requirements" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_account" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK__Employer__id_acc__2E1BDC42" FromRole="Employer" ToRole="Accounts" />
+          <NavigationProperty Name="Vacancies" Relationship="Self.FK__Vacancies__id_em__32E0915F" FromRole="Employer" ToRole="Vacancies" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="id_position" />
+          </Key>
+          <Property Name="id_position" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Advertisement" Relationship="Self.FK__Advertise__id_po__3A81B327" FromRole="Positions" ToRole="Advertisement" />
+          <NavigationProperty Name="Vacancies" Relationship="Self.FK__Vacancies__id_po__33D4B598" FromRole="Positions" ToRole="Vacancies" />
+        </EntityType>
+        <EntityType Name="Statements">
+          <Key>
+            <PropertyRef Name="id_statement" />
+          </Key>
+          <Property Name="id_statement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_vacancies" Type="Int32" Nullable="false" />
+          <Property Name="login_2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status_" Relationship="Self.FK__Statement__id_st__37A5467C" FromRole="Statements" ToRole="Status_" />
+          <NavigationProperty Name="Vacancies" Relationship="Self.FK__Statement__id_va__36B12243" FromRole="Statements" ToRole="Vacancies" />
+        </EntityType>
+        <EntityType Name="Statements1">
+          <Key>
+            <PropertyRef Name="id_statement1" />
+          </Key>
+          <Property Name="id_statement1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_advertisement" Type="Int32" Nullable="false" />
+          <Property Name="login_1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Advertisement" Relationship="Self.FK__Statement__id_ad__3E52440B" FromRole="Statements1" ToRole="Advertisement" />
+          <NavigationProperty Name="Status_" Relationship="Self.FK__Statement__id_st__3F466844" FromRole="Statements1" ToRole="Status_" />
+        </EntityType>
+        <EntityType Name="Status_">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Statements" Relationship="Self.FK__Statement__id_st__37A5467C" FromRole="Status_" ToRole="Statements" />
+          <NavigationProperty Name="Statements1" Relationship="Self.FK__Statement__id_st__3F466844" FromRole="Status_" ToRole="Statements1" />
+        </EntityType>
+        <EntityType Name="Vacancies">
+          <Key>
+            <PropertyRef Name="id_vacancies" />
+          </Key>
+          <Property Name="id_vacancies" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="exp_required" Type="Int32" Nullable="false" />
+          <Property Name="request" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_position" Type="Int32" Nullable="false" />
+          <Property Name="name_vacancies" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_employer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employer" Relationship="Self.FK__Vacancies__id_em__32E0915F" FromRole="Vacancies" ToRole="Employer" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK__Vacancies__id_po__33D4B598" FromRole="Vacancies" ToRole="Positions" />
+          <NavigationProperty Name="Statements" Relationship="Self.FK__Statement__id_va__36B12243" FromRole="Vacancies" ToRole="Statements" />
+        </EntityType>
+        <Association Name="FK__Admins__id_accou__286302EC">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Admins" Type="Self.Admins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="Admins">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Applicant__id_ac__2B3F6F97">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employer__id_acc__2E1BDC42">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employer" Type="Self.Employer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="Employer">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Advertise__id_ap__3B75D760">
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applicant">
+              <PropertyRef Name="id_applicant" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="id_applicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Advertise__id_po__3A81B327">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="id_position" />
+            </Principal>
+            <Dependent Role="Advertisement">
+              <PropertyRef Name="id_position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Statement__id_ad__3E52440B">
+          <End Role="Advertisement" Type="Self.Advertisement" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Statements1" Type="Self.Statements1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisement">
+              <PropertyRef Name="id_advertisement" />
+            </Principal>
+            <Dependent Role="Statements1">
+              <PropertyRef Name="id_advertisement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vacancies__id_em__32E0915F">
+          <End Role="Employer" Type="Self.Employer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employer">
+              <PropertyRef Name="id_employer" />
+            </Principal>
+            <Dependent Role="Vacancies">
+              <PropertyRef Name="id_employer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vacancies__id_po__33D4B598">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="id_position" />
+            </Principal>
+            <Dependent Role="Vacancies">
+              <PropertyRef Name="id_position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Statement__id_st__37A5467C">
+          <End Role="Status_" Type="Self.Status_" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Statements" Type="Self.Statements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="Statements">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Statement__id_va__36B12243">
+          <End Role="Vacancies" Type="Self.Vacancies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Statements" Type="Self.Statements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacancies">
+              <PropertyRef Name="id_vacancies" />
+            </Principal>
+            <Dependent Role="Statements">
+              <PropertyRef Name="id_vacancies" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Statement__id_st__3F466844">
+          <End Role="Status_" Type="Self.Status_" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Statements1" Type="Self.Statements1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="Statements1">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KadrovoeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" />
+          <EntitySet Name="Admins" EntityType="Self.Admins" />
+          <EntitySet Name="Advertisement" EntityType="Self.Advertisement" />
+          <EntitySet Name="Applicant" EntityType="Self.Applicant" />
+          <EntitySet Name="Employer" EntityType="Self.Employer" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" />
+          <EntitySet Name="Statements" EntityType="Self.Statements" />
+          <EntitySet Name="Statements1" EntityType="Self.Statements1" />
+          <EntitySet Name="Status_" EntityType="Self.Status_" />
+          <EntitySet Name="Vacancies" EntityType="Self.Vacancies" />
+          <AssociationSet Name="FK__Admins__id_accou__286302EC" Association="Self.FK__Admins__id_accou__286302EC">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Admins" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Applicant__id_ac__2B3F6F97" Association="Self.FK__Applicant__id_ac__2B3F6F97">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employer__id_acc__2E1BDC42" Association="Self.FK__Employer__id_acc__2E1BDC42">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Employer" EntitySet="Employer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Advertise__id_ap__3B75D760" Association="Self.FK__Advertise__id_ap__3B75D760">
+            <End Role="Applicant" EntitySet="Applicant" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Advertise__id_po__3A81B327" Association="Self.FK__Advertise__id_po__3A81B327">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Advertisement" EntitySet="Advertisement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Statement__id_ad__3E52440B" Association="Self.FK__Statement__id_ad__3E52440B">
+            <End Role="Advertisement" EntitySet="Advertisement" />
+            <End Role="Statements1" EntitySet="Statements1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vacancies__id_em__32E0915F" Association="Self.FK__Vacancies__id_em__32E0915F">
+            <End Role="Employer" EntitySet="Employer" />
+            <End Role="Vacancies" EntitySet="Vacancies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vacancies__id_po__33D4B598" Association="Self.FK__Vacancies__id_po__33D4B598">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Vacancies" EntitySet="Vacancies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Statement__id_st__37A5467C" Association="Self.FK__Statement__id_st__37A5467C">
+            <End Role="Status_" EntitySet="Status_" />
+            <End Role="Statements" EntitySet="Statements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Statement__id_va__36B12243" Association="Self.FK__Statement__id_va__36B12243">
+            <End Role="Vacancies" EntitySet="Vacancies" />
+            <End Role="Statements" EntitySet="Statements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Statement__id_st__3F466844" Association="Self.FK__Statement__id_st__3F466844">
+            <End Role="Status_" EntitySet="Status_" />
+            <End Role="Statements1" EntitySet="Statements1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KadrovoeModelContainer" CdmEntityContainer="KadrovoeEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="KadrovoeModel.Accounts">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="id_account" ColumnName="id_account" />
+                <ScalarProperty Name="login_" ColumnName="login_" />
+                <ScalarProperty Name="password_" ColumnName="password_" />
+                <ScalarProperty Name="role_user" ColumnName="role_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="KadrovoeModel.Admins">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="id_admin" ColumnName="id_admin" />
+                <ScalarProperty Name="id_account" ColumnName="id_account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Advertisement">
+            <EntityTypeMapping TypeName="KadrovoeModel.Advertisement">
+              <MappingFragment StoreEntitySet="Advertisement">
+                <ScalarProperty Name="id_advertisement" ColumnName="id_advertisement" />
+                <ScalarProperty Name="id_position" ColumnName="id_position" />
+                <ScalarProperty Name="date_of_application" ColumnName="date_of_application" />
+                <ScalarProperty Name="id_applicant" ColumnName="id_applicant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applicant">
+            <EntityTypeMapping TypeName="KadrovoeModel.Applicant">
+              <MappingFragment StoreEntitySet="Applicant">
+                <ScalarProperty Name="id_applicant" ColumnName="id_applicant" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="exp_work" ColumnName="exp_work" />
+                <ScalarProperty Name="skills" ColumnName="skills" />
+                <ScalarProperty Name="id_account" ColumnName="id_account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employer">
+            <EntityTypeMapping TypeName="KadrovoeModel.Employer">
+              <MappingFragment StoreEntitySet="Employer">
+                <ScalarProperty Name="id_employer" ColumnName="id_employer" />
+                <ScalarProperty Name="name_company" ColumnName="name_company" />
+                <ScalarProperty Name="adress_company" ColumnName="adress_company" />
+                <ScalarProperty Name="email_adress" ColumnName="email_adress" />
+                <ScalarProperty Name="requirements" ColumnName="requirements" />
+                <ScalarProperty Name="id_account" ColumnName="id_account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="KadrovoeModel.Positions">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="id_position" ColumnName="id_position" />
+                <ScalarProperty Name="position" ColumnName="position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statements">
+            <EntityTypeMapping TypeName="KadrovoeModel.Statements">
+              <MappingFragment StoreEntitySet="Statements">
+                <ScalarProperty Name="id_statement" ColumnName="id_statement" />
+                <ScalarProperty Name="id_vacancies" ColumnName="id_vacancies" />
+                <ScalarProperty Name="login_2" ColumnName="login_2" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statements1">
+            <EntityTypeMapping TypeName="KadrovoeModel.Statements1">
+              <MappingFragment StoreEntitySet="Statements1">
+                <ScalarProperty Name="id_statement1" ColumnName="id_statement1" />
+                <ScalarProperty Name="id_advertisement" ColumnName="id_advertisement" />
+                <ScalarProperty Name="login_1" ColumnName="login_1" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status_">
+            <EntityTypeMapping TypeName="KadrovoeModel.Status_">
+              <MappingFragment StoreEntitySet="Status_">
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="status1" ColumnName="status1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacancies">
+            <EntityTypeMapping TypeName="KadrovoeModel.Vacancies">
+              <MappingFragment StoreEntitySet="Vacancies">
+                <ScalarProperty Name="id_vacancies" ColumnName="id_vacancies" />
+                <ScalarProperty Name="exp_required" ColumnName="exp_required" />
+                <ScalarProperty Name="request" ColumnName="request" />
+                <ScalarProperty Name="id_position" ColumnName="id_position" />
+                <ScalarProperty Name="name_vacancies" ColumnName="name_vacancies" />
+                <ScalarProperty Name="id_employer" ColumnName="id_employer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

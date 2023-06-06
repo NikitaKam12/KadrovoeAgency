@@ -1,0 +1,44 @@
+﻿<Page x:Class="Kurssovay_1.Veiws.MyADV"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kurssovay_1.Veiws"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MyADV"
+      Loaded="My_ADV_Loaded">
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <TextBlock  HorizontalAlignment="Stretch" Margin="289,10,81,0" TextWrapping="Wrap" Text="Мои обьявления" VerticalAlignment="Top" Height="91" Width="430" FontSize="24" Grid.RowSpan="2"/>
+        <DataGrid Grid.Row="1" Margin="0,0,0,59.6" Grid.RowSpan="2"
+                  x:Name="MyADVGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ваш айди" Width="*" Binding="{Binding id_advertisement}"/>
+                <DataGridTextColumn Header="Логин соискателя" Width="*" Binding="{Binding date_of_application}"/>
+                <DataGridTextColumn Header="Статус заявки" Width="*" Binding="{Binding id_applicant}"/>
+
+                <DataGridTemplateColumn Width="auto" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            
+                        </DataTemplate>
+
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+
+        </DataGrid>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="25,21,0,0" VerticalAlignment="Top" Width="75" Click="Button_ClickOUT"/>
+        <Label Visibility="Hidden" Name="saveLogin"/>
+
+    </Grid>
+</Page>

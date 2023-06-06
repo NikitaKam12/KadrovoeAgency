@@ -1,0 +1,36 @@
+﻿<Page x:Class="Kurssovay_1.Veiws.WelcomPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kurssovay_1.Veiws"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WelcomPage">
+
+    <Grid Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Button Height="30" Width="100" HorizontalAlignment="Left" Margin="10" Content="Назад" Click="Button_Click">
+
+        </Button>
+        <Button x:Name="UsersData" Content="Личные кабинеты пользователей" HorizontalAlignment="Left" Margin="47,105,0,0" Grid.Row="1" VerticalAlignment="Top" Width="200" Height="75" Click="UsersData_Click"/>
+        <Image HorizontalAlignment="Left" Height="75" Margin="105,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Source="285655_user_icon.png"/>
+        <Image HorizontalAlignment="Left" Height="75" Margin="359,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89" Source="285655_user_icon.png"/>
+        <Button Content="Редактирование Вакансий" HorizontalAlignment="Left" Margin="305,105,0,0" Grid.Row="1" VerticalAlignment="Top" Width="200" Height="75" Click="Button_Click_1"/>
+        <Image HorizontalAlignment="Left" Height="75" Margin="621,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89" Source="285655_user_icon.png"/>
+        <Button Content="Редактирование Соискателей" HorizontalAlignment="Left" Margin="561,105,0,0" Grid.Row="1" VerticalAlignment="Top" Width="200" Height="75" Click="Button_Click_2"/>
+
+
+
+
+
+
+
+
+    </Grid>
+</Page>
